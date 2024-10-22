@@ -178,6 +178,26 @@ const SuperBlockIntroductionPage = (props: SuperBlockProp) => {
 
   const allChallenges = nodes.map(({ challenge }) => challenge);
   const challenges = allChallenges.filter(c => c.superBlock === superBlock);
+  const fedChallenges = [
+    {
+      block: 'lecture-what-is-html',
+      superBlock: 'front-end-development',
+      chapter: 'HTML Chapter',
+      module: 'Basic HTML'
+    },
+    {
+      block: 'workshop-cat-photo-app',
+      superBlock: 'front-end-development',
+      chapter: 'HTML Chapter',
+      module: 'Basic HTML'
+    },
+    {
+      block: 'lab-recipe-page',
+      superBlock: 'front-end-development',
+      chapter: 'HTML Chapter',
+      module: 'Advanced HTML'
+    }
+  ];
   const blocks = uniq(challenges.map(({ block }) => block));
 
   const i18nTitle = getSuperBlockTitleForMap(superBlock);
@@ -223,7 +243,10 @@ const SuperBlockIntroductionPage = (props: SuperBlockProp) => {
                 {t(`intro:misc-text.courses`)}
               </h2>
               <Spacer size='medium' />
-              <FrontEndDevelopmentTreeView />
+              <FrontEndDevelopmentTreeView
+                challenges={fedChallenges}
+                superBlock={superBlock}
+              />
               <div className='block-ui'>
                 {blocks.map(block => {
                   const blockChallenges = challenges.filter(
