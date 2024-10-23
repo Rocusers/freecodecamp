@@ -6,7 +6,6 @@
   "usesMultifileEditor": true,
   "hasEditableBoundaries": true,
   "dashedName": "workshop-sentence-analyzer",
-  "order": 170,
   "superBlock": "front-end-development",
   "challengeOrder": [
     {
@@ -42,5 +41,6 @@
       "title": "Step 8"
     }
   ],
-  "helpCategory": "JavaScript"
+  "helpCategory": "JavaScript",
+  "blockType": "workshop"
 }
