@@ -5,7 +5,6 @@
   "hasEditableBoundaries": true,
   "blockType": "workshop",
   "dashedName": "workshop-loan-qualification-checker",
-  "order": 154,
   "superBlock": "front-end-development",
   "challengeOrder": [
     {

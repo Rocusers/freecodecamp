@@ -2,7 +2,6 @@
   "name": "HTML Fundamentals",
   "isUpcomingChange": true,
   "dashedName": "lecture-html-fundamentals",
-  "order": 4,
   "superBlock": "front-end-development",
   "helpCategory": "HTML-CSS",
   "blockType": "lecture",
