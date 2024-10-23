@@ -107,9 +107,11 @@ function getChapterFromBlock(blockName, superBlockStructure) {
   );
 
   if (!chapter) {
-    throw Error(
+    console.error(
       `There is no chapter corresponding to block "${blockName}". It's possible that the block is missing in the superblock structure.`
     );
+
+    return 'chapter-dashed-name-placeholder';
   }
   return chapter.dashedName;
 }
@@ -122,9 +124,11 @@ function getModuleFromBlock(blockName, superBlockStructure) {
     module.blocks.some(b => b.dashedName === blockName)
   );
   if (!module) {
-    throw Error(
+    console.error(
       `There is no module corresponding to block "${blockName}". It's possible that the block is missing in the superblock structure.`
     );
+
+    return 'module-dashed-name-placeholder';
   }
   return module.dashedName;
 }
@@ -137,7 +141,7 @@ function getBlockOrder(blockName, superBlockStructure) {
   const index = blocks.findIndex(block => block.dashedName === blockName);
 
   if (index === -1)
-    throw Error(
+    console.error(
       `The block "${blockName}" does not appear in the superblock structure.`
     );
 

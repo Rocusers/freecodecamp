@@ -200,7 +200,7 @@ const schema = Joi.object()
       then: Joi.string().required()
     }),
     notes: Joi.string().allow(''),
-    order: Joi.number(),
+    // order: Joi.number(),
     prerequisites: Joi.when('challengeType', {
       is: [challengeTypes.exam],
       then: Joi.array().items(prerequisitesJoi)
