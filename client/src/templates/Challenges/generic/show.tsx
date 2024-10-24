@@ -27,6 +27,7 @@ import { isChallengeCompletedSelector } from '../redux/selectors';
 import { BlockTypes } from '../../../../../shared/config/blocks';
 import Scene from '../components/scene/scene';
 import MultipleChoiceQuestions from '../components/multiple-choice-questions';
+import ChallengeExplanation from '../components/challenge-explanation';
 
 // Redux Setup
 const mapStateToProps = (state: unknown) => ({
@@ -66,6 +67,7 @@ const ShowGeneric = ({
         block,
         blockType,
         description,
+        explanation,
         challengeType,
         fields: { tests },
         helpCategory,
@@ -255,6 +257,10 @@ const ShowGeneric = ({
                 />
               )}
 
+              {explanation ? (
+                <ChallengeExplanation explanation={explanation} />
+              ) : null}
+
               <Button block={true} variant='primary' onClick={handleSubmit}>
                 {blockType === BlockTypes.review
                   ? t('buttons.submit')
@@ -289,6 +295,7 @@ export const query = graphql`
         blockType
         challengeType
         description
+        explanation
         helpCategory
         instructions
         fields {
