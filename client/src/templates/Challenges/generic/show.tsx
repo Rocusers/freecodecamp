@@ -29,6 +29,10 @@ import Scene from '../components/scene/scene';
 import MultipleChoiceQuestions from '../components/multiple-choice-questions';
 import ChallengeExplanation from '../components/challenge-explanation';
 
+// Styles
+import './show.css';
+import '../video.css';
+
 // Redux Setup
 const mapStateToProps = (state: unknown) => ({
   isChallengeCompleted: isChallengeCompletedSelector(state) as boolean
