@@ -28,6 +28,7 @@ import { BlockTypes } from '../../../../../shared/config/blocks';
 import Scene from '../components/scene/scene';
 import MultipleChoiceQuestions from '../components/multiple-choice-questions';
 import ChallengeExplanation from '../components/challenge-explanation';
+import HelpModal from '../components/help-modal';
 
 // Styles
 import './show.css';
@@ -43,7 +44,8 @@ const mapDispatchToProps = {
   updateChallengeMeta,
   challengeMounted,
   updateSolutionFormValues,
-  openCompletionModal: () => openModal('completion')
+  openCompletionModal: () => openModal('completion'),
+  openHelpModal: () => openModal('help')
 };
 
 // Types
@@ -54,6 +56,7 @@ interface ShowQuizProps {
   initTests: (xs: Test[]) => void;
   isChallengeCompleted: boolean;
   openCompletionModal: () => void;
+  openHelpModal: () => void;
   pageContext: {
     challengeMeta: ChallengeMeta;
   };
@@ -73,7 +76,7 @@ const ShowGeneric = ({
         description,
         explanation,
         challengeType,
-        fields: { tests },
+        fields: { blockName, tests },
         helpCategory,
         instructions,
         questions,
@@ -90,6 +93,7 @@ const ShowGeneric = ({
   initTests,
   updateChallengeMeta,
   openCompletionModal,
+  openHelpModal,
   isChallengeCompleted
 }: ShowQuizProps) => {
   const { t } = useTranslation();
@@ -270,10 +274,14 @@ const ShowGeneric = ({
                   ? t('buttons.submit')
                   : t('buttons.check-answer')}
               </Button>
+              <Button block={true} variant='primary' onClick={openHelpModal}>
+                {t('buttons.ask-for-help')}
+              </Button>
 
               <Spacer size='large' />
             </Col>
             <CompletionModal />
+            <HelpModal challengeTitle={title} challengeBlock={blockName} />
           </Row>
         </Container>
       </LearnLayout>
