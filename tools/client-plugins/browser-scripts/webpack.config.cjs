@@ -83,7 +83,7 @@ module.exports = (env = {}) => {
     resolve: {
       fallback: {
         buffer: require.resolve('buffer'),
-        util: false,
+        util: require.resolve('util'),
         stream: false,
         process: require.resolve('process/browser.js')
       },
