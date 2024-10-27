@@ -238,7 +238,9 @@ class Block extends Component<BlockProps> {
       <>
         {' '}
         <ScrollableAnchor id={block}>
-          <div className={`block block-grid ${isExpanded ? 'open' : ''}`}>
+          <div
+            className={`block block-grid challenge-grid-block ${isExpanded ? 'open' : ''}`}
+          >
             <BlockHeader
               blockDashed={block}
               blockTitle={blockTitle}
@@ -330,7 +332,9 @@ class Block extends Component<BlockProps> {
      */
     const ChallengeListBlock = (
       <ScrollableAnchor id={block}>
-        <div className={`block block-grid ${isExpanded ? 'open' : ''}`}>
+        <div
+          className={`block block-grid challenge-list-block ${isExpanded ? 'open' : ''}`}
+        >
           <BlockHeader
             blockDashed={block}
             blockTitle={blockTitle}
@@ -373,7 +377,7 @@ class Block extends Component<BlockProps> {
      */
     const LinkBlock = (
       <ScrollableAnchor id={block}>
-        <div className='block block-grid grid-project-block grid-project-block-no-margin'>
+        <div className='block block-grid grid-project-block grid-project-block-no-margin link-block'>
           <div className='tags-wrapper'>
             {!isAudited && (
               <Link
