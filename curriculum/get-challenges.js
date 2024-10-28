@@ -32,8 +32,6 @@ const fullStackSuperBlockStructure = require('./superblock-structure/full-stack.
 
 assertSuperBlockStructure(fullStackSuperBlockStructure);
 
-const fullStackSuperBlockStructure = require('./superblock-structure/full-stack.json');
-
 const access = util.promisify(fs.access);
 
 const ENGLISH_CHALLENGES_DIR = path.resolve(__dirname, 'challenges');
