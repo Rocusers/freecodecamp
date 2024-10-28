@@ -32,6 +32,7 @@ import CertChallenge from './components/cert-challenge';
 import LegacyLinks from './components/legacy-links';
 import HelpTranslate from './components/help-translate';
 import SuperBlockIntro from './components/super-block-intro';
+import { SuperBlockTreeView } from './components/super-block-tree-view';
 import { resetExpansion, toggleBlock } from './redux';
 
 import './intro.css';
@@ -191,6 +192,8 @@ const SuperBlockIntroductionPage = (props: SuperBlockProp) => {
     SuperBlocks.PythonForEverybody
   ];
 
+  const superBlockWithTreeView = [SuperBlocks.FrontEndDevelopment];
+
   const onCertificationDonationAlertClick = () => {
     callGA({
       event: 'donation_related',
@@ -218,36 +221,47 @@ const SuperBlockIntroductionPage = (props: SuperBlockProp) => {
               />
               <HelpTranslate superBlock={superBlock} />
               <Spacer size='large' />
-              <h2 className='text-center big-subheading'>
+              <h2
+                className='text-center big-subheading'
+                id='super-block-heading'
+              >
                 {t(`intro:misc-text.courses`)}
               </h2>
               <Spacer size='medium' />
-              <div className='block-ui'>
-                {blocks.map(block => {
-                  const blockChallenges = challenges.filter(
-                    c => c.block === block
-                  );
-                  const blockType = blockChallenges[0].blockType;
+              {superBlockWithTreeView.includes(superBlock) ? (
+                <SuperBlockTreeView
+                  challenges={challenges}
+                  superBlock={superBlock}
+                  aria-labelledby='super-block-heading'
+                />
+              ) : (
+                <div className='block-ui'>
+                  {blocks.map(block => {
+                    const blockChallenges = challenges.filter(
+                      c => c.block === block
+                    );
+                    const blockType = blockChallenges[0].blockType;
 
-                  return (
-                    <Block
-                      key={block}
-                      block={block}
-                      blockType={blockType}
-                      challenges={blockChallenges}
+                    return (
+                      <Block
+                        key={block}
+                        block={block}
+                        blockType={blockType}
+                        challenges={blockChallenges}
+                        superBlock={superBlock}
+                      />
+                    );
+                  })}
+                  {!superblockWithoutCert.includes(superBlock) && (
+                    <CertChallenge
+                      certification={certification}
                       superBlock={superBlock}
+                      title={title}
+                      user={user}
                     />
-                  );
-                })}
-                {!superblockWithoutCert.includes(superBlock) && (
-                  <CertChallenge
-                    certification={certification}
-                    superBlock={superBlock}
-                    title={title}
-                    user={user}
-                  />
-                )}
-              </div>
+                  )}
+                </div>
+              )}
               {!isSignedIn && !signInLoading && (
                 <>
                   <Spacer size='large' />
@@ -306,6 +320,8 @@ export const query = graphql`
           superBlock
           dashedName
           blockLayout
+          chapter
+          module
         }
       }
     }

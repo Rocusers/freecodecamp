@@ -141,6 +141,11 @@ const schema = Joi.object()
       ).required()
     }),
     challengeOrder: Joi.number(),
+    chapter: Joi.number().when('superBlock', {
+      is: 'front-end-development',
+      then: Joi.required(),
+      otherwise: Joi.optional()
+    }),
     certification: Joi.string().regex(slugWithSlashRE),
     challengeType: Joi.number().min(0).max(24).required(),
     checksum: Joi.number(),
@@ -195,12 +200,17 @@ const schema = Joi.object()
     isComingSoon: Joi.bool(),
     isLocked: Joi.bool(),
     isPrivate: Joi.bool(),
+    module: Joi.number().when('superBlock', {
+      is: 'front-end-development',
+      then: Joi.required(),
+      otherwise: Joi.optional()
+    }),
     msTrophyId: Joi.when('challengeType', {
       is: [challengeTypes.msTrophy],
       then: Joi.string().required()
     }),
     notes: Joi.string().allow(''),
-    order: Joi.number(),
+    // order: Joi.number(),
     prerequisites: Joi.when('challengeType', {
       is: [challengeTypes.exam],
       then: Joi.array().items(prerequisitesJoi)
