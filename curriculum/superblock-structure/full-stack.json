@@ -14,7 +14,9 @@
             { "dashedName": "lab-recipe-page" },
             { "dashedName": "lecture-html-fundamentals" },
             { "dashedName": "lab-travel-agency-page" },
+            { "dashedName": "lecture-working-with-media" },
             { "dashedName": "lab-video-compilation-page" },
+            { "dashedName": "lecture-working-with-links" },
             { "dashedName": "review-basic-html" },
             { "dashedName": "quiz-basic-html" }
           ]
@@ -88,6 +90,7 @@
         {
           "dashedName": "styling-forms",
           "blocks": [
+            { "dashedName": "workshop-registration-form" },
             { "dashedName": "lab-contact-form" },
             { "dashedName": "quiz-styling-forms" }
           ]
