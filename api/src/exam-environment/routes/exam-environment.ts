@@ -47,7 +47,8 @@ export const examEnvironmentValidatedTokenRoutes: FastifyPluginCallbackTypebox =
     fastify.post(
       '/exam-environment/screenshot',
       {
-        schema: schemas.examEnvironmentPostScreenshot
+        schema: schemas.examEnvironmentPostScreenshot,
+        bodyLimit: 1024 * 1024 * 5 // 5MiB
       },
       postScreenshotHandler
     );
@@ -564,10 +565,57 @@ async function postExamAttemptHandler(
  */
 async function postScreenshotHandler(
   this: FastifyInstance,
-  _req: UpdateReqType<typeof schemas.examEnvironmentPostScreenshot>,
+  req: UpdateReqType<typeof schemas.examEnvironmentPostScreenshot>,
   reply: FastifyReply
 ) {
-  return reply.code(418);
+  const user = req.user!;
+  const currAttemptId = req.body.examAttemptId;
+  const maybeAttempt = await mapErr(
+    this.prisma.envExamAttempt.findMany({
+      where: {
+        userId: user.id,
+        id: currAttemptId
+      }
+    })
+  );
+
+  if (maybeAttempt.hasError) {
+    void reply.code(500);
+    return reply.send(
+      ERRORS.FCC_ERR_EXAM_ENVIRONMENT(JSON.stringify(maybeAttempt.error))
+    );
+  }
+
+  const attempt = maybeAttempt.data;
+
+  if (attempt.length === 0) {
+    void reply.code(404);
+    return reply.send(
+      ERRORS.FCC_ERR_EXAM_ENVIRONMENT_EXAM_ATTEMPT(
+        `No attempts found for user '${user.id}' with attempt id '${currAttemptId}'.`
+      )
+    );
+  }
+
+  const imgBinary = Buffer.from(req.body.image, 'base64');
+
+  // Verify image is JPG using magic number
+  if (imgBinary[0] !== 0xff || imgBinary[1] !== 0xd8 || imgBinary[2] !== 0xff) {
+    void reply.code(400);
+    return reply.send(
+      ERRORS.FCC_EINVAL_EXAM_ENVIRONMENT_SCREENSHOT('Invalid image format.')
+    );
+  }
+
+  void reply.code(200).send();
+
+  await fetch('http://localhost:3003/upload', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(req.body)
+  });
 }
 
 async function getExams(
