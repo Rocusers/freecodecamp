@@ -29,6 +29,7 @@ import {
   putVerifyCert
 } from '../../utils/ajax';
 import { completedChallengesSelector } from '../selectors';
+import { Themes } from '../../components/settings/theme';
 import {
   submitNewAboutComplete,
   submitNewAboutError,
@@ -110,9 +111,12 @@ function* updateMySoundSaga({ payload: update }) {
   }
 }
 
-function* updateMyThemeSaga({ payload: update }) {
+function* toggleThemeSaga({ payload: update }) {
   try {
     const { data } = yield call(putUpdateMyTheme, update);
+    const invertedTheme =
+      update.theme === Themes.Night ? Themes.Default : Themes.Night;
+    localStorage.setItem('theme', invertedTheme);
     yield put(updateMyThemeComplete({ ...data, payload: update }));
     yield put(createFlashMessage({ ...data }));
   } catch (e) {
@@ -225,7 +229,7 @@ export function createSettingsSagas(types) {
     takeEvery(types.updateMySocials, updateMySocialsSaga),
     takeEvery(types.updateMyHonesty, updateMyHonestySaga),
     takeEvery(types.updateMySound, updateMySoundSaga),
-    takeEvery(types.updateMyTheme, updateMyThemeSaga),
+    takeEvery(types.updateMyTheme, toggleThemeSaga),
     takeEvery(types.updateMyKeyboardShortcuts, updateMyKeyboardShortcutsSaga),
     takeEvery(types.updateMyQuincyEmail, updateMyQuincyEmailSaga),
     takeEvery(types.updateMyPortfolio, updateMyPortfolioSaga),
