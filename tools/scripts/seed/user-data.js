@@ -47,7 +47,7 @@ module.exports.blankUser = {
   portfolio: [],
   yearsTopContributor: [],
   rand: 0.6126749173148205,
-  theme: 'default',
+  theme: 'light',
   profileUI: {
     isLocked: true,
     showAbout: false,
@@ -109,7 +109,7 @@ module.exports.publicUser = {
   portfolio: [],
   yearsTopContributor: [],
   rand: 0.6126749173148205,
-  theme: 'default',
+  theme: 'light',
   profileUI: {
     isLocked: false,
     showAbout: true,
@@ -172,7 +172,7 @@ module.exports.demoUser = {
   portfolio: [],
   yearsTopContributor: [],
   rand: 0.6126749173148205,
-  theme: 'default',
+  theme: 'light',
   profileUI: {
     isLocked: true,
     showAbout: false,
@@ -12239,7 +12239,7 @@ module.exports.fullyCertifiedUser = {
   portfolio: [],
   yearsTopContributor: ['2019'],
   rand: 0.6126749173148205,
-  theme: 'default',
+  theme: 'light',
   keyboardShortcuts: false,
   profileUI: {
     isLocked: false,

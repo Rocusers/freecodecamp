@@ -29,7 +29,7 @@ export { updateMyPrivacyTerms } from './schemas/settings/update-my-privacy-terms
 export { updateMyProfileUI } from './schemas/settings/update-my-profile-ui';
 export { updateMyQuincyEmail } from './schemas/settings/update-my-quincy-email';
 export { updateMySocials } from './schemas/settings/update-my-socials';
-export { updateMyTheme } from './schemas/settings/update-my-theme';
+export { toggleTheme } from './schemas/settings/update-my-theme';
 export { updateMyUsername } from './schemas/settings/update-my-username';
 export { deleteMsUsername } from './schemas/user/delete-ms-username';
 export { deleteMyAccount } from './schemas/user/delete-my-account';

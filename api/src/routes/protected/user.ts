@@ -561,7 +561,7 @@ export const userGetRoutes: FastifyPluginCallbackTypebox = (
               joinDate: new ObjectId(user.id).getTimestamp().toISOString(),
               location: location ?? '',
               name: name ?? '',
-              theme: theme ?? 'default',
+              theme: theme ?? 'light',
               twitter: normalizeTwitter(twitter),
               username: usernameDisplay || username,
               userToken: encodedToken,

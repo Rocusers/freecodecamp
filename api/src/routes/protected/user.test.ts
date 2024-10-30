@@ -716,7 +716,7 @@ describe('userRoutes', () => {
           keyboardShortcuts: false,
           location: '',
           name: '',
-          theme: 'default'
+          theme: 'light'
         };
 
         const response = await superRequest('/user/get-session-user', {

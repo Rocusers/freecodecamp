@@ -3,10 +3,7 @@ import { APIRequestContext, expect, test } from '@playwright/test';
 import { clearEditor, focusEditor, getEditors } from './utils/editor';
 import { authedRequest } from './utils/request';
 
-const setTheme = async (
-  request: APIRequestContext,
-  theme: 'default' | 'night'
-) =>
+const setTheme = async (request: APIRequestContext, theme: 'light' | 'dark') =>
   authedRequest({
     request,
     endpoint: '/update-my-theme',
@@ -69,12 +66,12 @@ test.describe('Editor theme if the system theme is dark', () => {
     test('should respect the user settings', async ({ page, request }) => {
       const editor = page.locator("div[role='code'].monaco-editor");
 
-      await setTheme(request, 'night');
+      await setTheme(request, 'dark');
       await page.goto(testPage);
 
       await expect(editor).toHaveClass(/vs-dark/);
 
-      await setTheme(request, 'default');
+      await setTheme(request, 'light');
       await page.reload();
 
       await expect(editor).toHaveClass(/vs(?!\w)/);
@@ -101,12 +98,12 @@ test.describe('Editor theme if the system theme is light', () => {
     test('should respect the user settings', async ({ page, request }) => {
       const editor = page.locator("div[role='code'].monaco-editor");
 
-      await setTheme(request, 'night');
+      await setTheme(request, 'dark');
       await page.goto(testPage);
 
       await expect(editor).toHaveClass(/vs-dark/);
 
-      await setTheme(request, 'default');
+      await setTheme(request, 'light');
       await page.reload();
 
       await expect(editor).toHaveClass(/vs(?!\w)/);
@@ -117,7 +114,7 @@ test.describe('Editor theme if the system theme is light', () => {
       page,
       request
     }) => {
-      await setTheme(request, 'default');
+      await setTheme(request, 'light');
       await page.goto(testPage);
       // Open the nav menu and toggle the theme
       await page.getByRole('button', { name: 'Menu' }).click();

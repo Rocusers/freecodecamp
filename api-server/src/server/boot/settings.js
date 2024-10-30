@@ -31,7 +31,7 @@ export default function settingsController(app) {
   // );
   api.post('/update-my-current-challenge', temporarilyDisabledEndpoint);
   api.put('/update-my-portfolio', ifNoUser401, updateMyPortfolio);
-  api.put('/update-my-theme', ifNoUser401, updateMyTheme);
+  api.put('/update-my-theme', ifNoUser401, toggleTheme);
   api.put('/update-my-about', ifNoUser401, updateMyAbout);
   api.put(
     '/update-my-email',
@@ -297,9 +297,9 @@ export function updateMySocials(...args) {
   )(...args);
 }
 
-function updateMyTheme(...args) {
+function toggleTheme(...args) {
   const buildUpdate = body => _.pick(body, 'theme');
-  const validate = ({ theme }) => theme == 'default' || theme == 'night';
+  const validate = ({ theme }) => theme == 'light' || theme == 'dark';
   createUpdateUserProperties(
     buildUpdate,
     validate,

@@ -9,13 +9,13 @@ import { useTranslation, withTranslation } from 'react-i18next';
 import { connect, useDispatch } from 'react-redux';
 import { radioLocation } from '../../../../config/env.json';
 import { openSignoutModal } from '../../../redux/actions';
-import { updateMyTheme } from '../../../redux/settings/actions';
+import { toggleTheme } from '../../../redux/settings/actions';
 import { Link } from '../../helpers';
-import { type ThemeProps, Themes } from '../../settings/theme';
+import { Themes } from '../../settings/theme';
 import { User } from '../../../redux/prop-types';
 import SupporterBadge from '../../../assets/icons/supporter-badge';
 
-export interface NavLinksProps extends Pick<ThemeProps, 'currentTheme'> {
+export interface NavLinksProps {
   displayMenu: boolean;
   showMenu: () => void;
   hideMenu: () => void;
@@ -25,7 +25,6 @@ export interface NavLinksProps extends Pick<ThemeProps, 'currentTheme'> {
 }
 
 const mapDispatchToProps = {
-  updateTheme: (theme: Themes) => updateMyTheme({ theme }),
   openSignoutModal
 };
 
@@ -250,11 +249,7 @@ function NavLinks({
           }
           onClick={() => {
             if (currentUserName) {
-              const invertedTheme =
-                currentUserTheme === Themes.Night
-                  ? Themes.Default
-                  : Themes.Night;
-              dispatch(updateMyTheme({ theme: invertedTheme }));
+              dispatch(toggleTheme({ theme: currentUserTheme }));
             }
           }}
           onKeyDown={currentUserName ? handleMenuKeyDown : handleSignOutKeys}

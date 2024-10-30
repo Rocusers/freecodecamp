@@ -1,8 +1,8 @@
 import { Type } from '@fastify/type-provider-typebox';
 
-export const updateMyTheme = {
+export const toggleTheme = {
   body: Type.Object({
-    theme: Type.Union([Type.Literal('default'), Type.Literal('night')])
+    theme: Type.Union([Type.Literal('light'), Type.Literal('dark')])
   }),
   response: {
     200: Type.Object({

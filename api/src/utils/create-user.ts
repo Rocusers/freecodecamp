@@ -84,7 +84,7 @@ export function createUserInput(email: string): Prisma.userCreateInput {
       showTimeLine: false
     },
     sendQuincyEmail: false,
-    theme: 'default',
+    theme: 'light',
     username,
     usernameDisplay: username,
     yearsTopContributor: [], // TODO: Omit this from the document? (prisma will always return []),

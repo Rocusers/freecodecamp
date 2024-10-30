@@ -180,7 +180,7 @@ function DefaultLayout({
           bodyAttributes={{
             class: useSystemTheme
               ? getSystemTheme()
-              : `${String(theme) === 'night' ? 'dark' : 'light'}-palette`
+              : `${String(theme) === 'dark' ? 'dark' : 'light'}-palette`
           }}
           meta={[
             {

@@ -389,7 +389,7 @@ describe('auth0 plugin', () => {
         rand: null,
         savedChallenges: [],
         sendQuincyEmail: false,
-        theme: 'default',
+        theme: 'light',
         timezone: null,
         twitter: null,
         updateCount: 0,

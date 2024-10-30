@@ -46,12 +46,12 @@ export const updateMySoundComplete = createAction(
 );
 export const updateMySoundError = createAction(types.updateMySoundError);
 
-export const updateMyTheme = createAction(types.updateMyTheme);
-export const updateMyThemeComplete = createAction(
-  types.updateMyThemeComplete,
+export const toggleTheme = createAction(types.toggleTheme);
+export const toggleThemeComplete = createAction(
+  types.toggleThemeComplete,
   checkForSuccessPayload
 );
-export const updateMyThemeError = createAction(types.updateMyThemeError);
+export const toggleThemeError = createAction(types.toggleThemeError);
 
 export const updateMyKeyboardShortcuts = createAction(
   types.updateMyKeyboardShortcuts

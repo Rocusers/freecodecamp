@@ -51,7 +51,7 @@ const config = {
           'typescript',
           'xml'
         ],
-        theme: 'default',
+        theme: 'light',
         css: true,
         plugins: ['line-numbers']
       }

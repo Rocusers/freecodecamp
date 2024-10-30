@@ -49,8 +49,8 @@ import {
   updateMySocialsError,
   updateMySoundComplete,
   updateMySoundError,
-  updateMyThemeComplete,
-  updateMyThemeError,
+  toggleThemeComplete,
+  toggleThemeError,
   validateUsernameComplete,
   validateUsernameError,
   verifyCertComplete,
@@ -117,10 +117,10 @@ function* toggleThemeSaga({ payload: update }) {
     const invertedTheme =
       update.theme === Themes.Night ? Themes.Default : Themes.Night;
     localStorage.setItem('theme', invertedTheme);
-    yield put(updateMyThemeComplete({ ...data, payload: update }));
+    yield put(toggleThemeComplete({ ...data, payload: update }));
     yield put(createFlashMessage({ ...data }));
   } catch (e) {
-    yield put(updateMyThemeError);
+    yield put(toggleThemeError);
   }
 }
 
@@ -229,7 +229,7 @@ export function createSettingsSagas(types) {
     takeEvery(types.updateMySocials, updateMySocialsSaga),
     takeEvery(types.updateMyHonesty, updateMyHonestySaga),
     takeEvery(types.updateMySound, updateMySoundSaga),
-    takeEvery(types.updateMyTheme, toggleThemeSaga),
+    takeEvery(types.toggleTheme, toggleThemeSaga),
     takeEvery(types.updateMyKeyboardShortcuts, updateMyKeyboardShortcutsSaga),
     takeEvery(types.updateMyQuincyEmail, updateMyQuincyEmailSaga),
     takeEvery(types.updateMyPortfolio, updateMyPortfolioSaga),

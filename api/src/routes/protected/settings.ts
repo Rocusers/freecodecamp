@@ -325,7 +325,7 @@ ${isLinkSentWithinLimitTTL}`
   fastify.put(
     '/update-my-theme',
     {
-      schema: schemas.updateMyTheme,
+      schema: schemas.toggleTheme,
       errorHandler: updateErrorHandler
     },
     async (req, reply) => {

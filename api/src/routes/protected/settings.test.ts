@@ -563,7 +563,7 @@ Happy coding!
     describe('/update-my-theme', () => {
       test('PUT returns 200 status code with "success" message', async () => {
         const response = await superPut('/update-my-theme').send({
-          theme: 'night'
+          theme: 'dark'
         });
 
         expect(response.body).toEqual({

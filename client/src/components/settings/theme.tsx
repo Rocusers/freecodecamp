@@ -1,12 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
-import { updateMyTheme } from '../../redux/settings/actions';
+import { toggleTheme } from '../../redux/settings/actions';
 import ToggleButtonSetting from './toggle-button-setting';
 
 export enum Themes {
-  Night = 'night',
-  Default = 'default'
+  Night = 'dark',
+  Default = 'light'
 }
 
 export default function ThemeSettings(): JSX.Element {
@@ -22,7 +22,7 @@ export default function ThemeSettings(): JSX.Element {
       offLabel={t('buttons.off')}
       onLabel={t('buttons.on')}
       toggleFlag={() => {
-        dispatch(updateMyTheme({ theme: currentTheme }));
+        dispatch(toggleTheme({ theme: currentTheme }));
       }}
     />
   );
